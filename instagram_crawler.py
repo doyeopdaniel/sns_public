@@ -99,3 +99,8 @@ class InstagramCrawler:
             # 결과 저장
             updated_df.to_csv('instagram_results.csv', index=False)
             self.logger.info(f"Results appended to instagram_results.csv - {len(df)} new rows")
+
+if __name__ == "__main__":
+    hashtag_file = "path/to/your/hashtag_file.csv"  # 해시태그 CSV 파일 경로
+    crawler = InstagramCrawler(hashtag_file)
+    crawler.run()

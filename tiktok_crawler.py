@@ -33,7 +33,7 @@ class TikTokCrawler:
         time.sleep(random.uniform(min_seconds, max_seconds))
         
     def crawl_hashtag(self, hashtag: str) -> List[Dict]:
-        """틱톡 해시태그 ���롤링
+        """틱톡 해시태그 크롤링
         
         Args:
             hashtag (str): 크롤링할 해시태그
@@ -98,3 +98,8 @@ class TikTokCrawler:
             # 결과 저장
             updated_df.to_csv('tiktok_results.csv', index=False)
             self.logger.info(f"Results appended to tiktok_results.csv - {len(df)} new rows")
+
+if __name__ == "__main__":
+    hashtag_file = "path/to/your/hashtag_file.csv"  # 해시태그 CSV 파일 경로
+    crawler = TikTokCrawler(hashtag_file)
+    crawler.run()
