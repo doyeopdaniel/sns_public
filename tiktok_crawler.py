@@ -19,8 +19,7 @@ driver = webdriver.Chrome(service=service)
 with open('hashtag.csv', mode='r', encoding='utf-8') as hashtag_file:
     reader = csv.reader(hashtag_file)
     next(reader)  # 첫 번째 행(헤더) 건너뛰기
-    hashtags = [row[2] for idx, row in enumerate(reader) if idx >= 35]  # 두 번째 행부터 해시태그를 리스트에 저장
-
+    hashtags = [row[2] for idx, row in enumerate(reader) if idx >= 11]  # 두 번째 행부터 해시태그를 리스트에 저장
 
 driver.get("https://www.tiktok.com")
 time.sleep(2)
