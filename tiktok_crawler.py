@@ -83,8 +83,7 @@ for hashtag in hashtags:
                 try:
                     # 첫 번째 요소의 CSS 선택자
                     css_selector_1 = f"#search_top-item-user-link-{i-1} > div > p"  # 0부터 시작하는 인덱스
-                    # 두 번째 요소의 CSS 선택자
-                    css_selector_2 = f"#tabs-0-panel-search_top > div > div > div:nth-child({i}) > div.css-hbrxqe-DivVideoSearchCardDesc.etrd4pu0 > div > div.css-1kw4mmh-DivPlayLine.etrd4pu3 > div > strong"
+
                     
                     # 첫 번째 요소 찾기
                     element_1 = WebDriverWait(driver, 10).until(
@@ -95,20 +94,11 @@ for hashtag in hashtags:
                     text_1 = element_1.text
                     print(f"Element {i-1} (User Link): {text_1}")
 
-                    # 두 번째 요소 찾기
-                    element_2 = WebDriverWait(driver, 10).until(
-                        EC.presence_of_element_located((By.CSS_SELECTOR, css_selector_2))
-                    )
-                    
-                    # 두 번째 요소의 텍스트 가져오기
-                    text_2 = element_2.text
-                    print(f"Element {i} (Video Description): {text_2}")
-                    
                 except Exception as e:
                     print(f"Element {i} not found: {e}")
                 # CSV에 데이터 쓰기
-                writer.writerow({'name': text_1, 'video': text_2})
-                print(f"Element {i-1} (User Link): {text_1}, Element {i} (Video Description): {text_2}")
+                writer.writerow({'name':  text_1})
+               
     except Exception as e:
         print(f"파일 저장 중 오류 발생: {e}")
 
