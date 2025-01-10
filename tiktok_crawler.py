@@ -10,16 +10,20 @@ import keyboard
 import os
 import random
 import csv
+import pandas as pd
 
 # Chrome 드라이버 서비스 설정
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
 
+# hashtag_meme.csv 파일 경로 수정
+df = pd.read_csv('C:/Users/user/Desktop/sns_crawler/hashtag_meme.csv', encoding='utf-8')
+
 # CSV 파일에서 해시태그 읽기
-with open('hashtag.csv', mode='r', encoding='utf-8') as hashtag_file:
+with open('hashtag_meme.csv', mode='r', encoding='utf-8') as hashtag_file:
     reader = csv.reader(hashtag_file)
     next(reader)  # 첫 번째 행(헤더) 건너뛰기
-    hashtags = [row[2] for idx, row in enumerate(reader) if idx >= 11]  # 두 번째 행부터 해시태그를 리스트에 저장
+    hashtags = [row[2] for idx, row in enumerate(reader) if idx >= 21]  # 두 번째 행부터 해시태그를 리스트에 저장
 
 driver.get("https://www.tiktok.com")
 time.sleep(2)
@@ -63,7 +67,7 @@ for hashtag in hashtags:
         time.sleep(10)
 
     try:
-        with open('tiktok_data.csv', mode='a', newline='', encoding='utf-8') as csv_file:
+        with open('tiktok_data_meme.csv', mode='a', newline='', encoding='utf-8') as csv_file:
             fieldnames = ['name', 'video']  # 열 이름 정의
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
@@ -102,4 +106,5 @@ for hashtag in hashtags:
     except Exception as e:
         print(f"파일 저장 중 오류 발생: {e}")
 
-input("브라우저를 닫으려면 Enter 키를 누르세요.") 
+input("브라우저를 닫으려면 Enter 키를 누르세요.")
+
