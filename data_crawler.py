@@ -6,13 +6,13 @@ import os
 import traceback  # traceback 모듈 추가
 
 # CSV 파일 읽기
-df = pd.read_csv('influencer.csv', sep=',', header=0)  # CSV 파일 읽기
+df = pd.read_csv('tiktoker_meme.csv', sep=',', header=0)  # CSV 파일 읽기
 
 # 셀레니움 웹드라이버 설정
 driver = webdriver.Chrome()  # Chrome 드라이버를 사용합니다. 다른 브라우저를 원하면 변경하세요.
 
 # 시작 행 설정
-start_index = 3234  # 원하는 시작 행 번호로 설정하세요
+start_index = 0  # 원하는 시작 행 번호로 설정하세요
 
 # 조회수를 숫자로 변환하는 함수
 def parse_views(view_str):
@@ -65,7 +65,7 @@ print("i am groot")
 
 # CSV 파일 읽기
 try:
-    df_existing = pd.read_csv('influencer_with_views.csv', sep=',', header=0)  # 기존 데이터 읽기
+    df_existing = pd.read_csv('tiktoker_meme_with_views.csv', sep=',', header=0)  # 기존 데이터 읽기
 except FileNotFoundError:
     df_existing = pd.DataFrame()  # 파일이 없으면 빈 데이터프레임 생성
 
@@ -90,7 +90,7 @@ for index, row in df.iterrows():
 
     # CSV 파일에 저장 (루프 안으로 이동)
     try:
-        df_existing.to_csv('influencer_with_views.csv', index=False)  # 모든 데이터 저장
+        df_existing.to_csv('tiktoker_meme_with_views.csv', index=False)  # 모든 데이터 저장
         print("Data saved for index:", index)
     except Exception as e:
         print(f"Error saving data for index {index}: {e}")
